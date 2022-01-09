@@ -21,6 +21,11 @@ const typeDefs = gql`
 
   }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Query {
       me: User
       books(_id: ID!) : [Book]

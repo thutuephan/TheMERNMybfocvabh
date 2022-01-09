@@ -11,15 +11,18 @@ const resolvers = {
                 const userData = await User.findOne({ _id: context.user._id })
                 return userData;
             }
+            throw new AuthenticationError('You need to be logged in!');
         }
     },
 
     Mutation: {
-        createUser: async (parent, args) => {
+        addUser: async (parent, args) => {
             const user = await User.create(args);
             const token = signToken(user);
             return { token, user }
         },
+
+        
 
         saveBook: async (parent, args) => {
 
