@@ -5,7 +5,8 @@ const typeDefs = gql`
       _id: ID!,
       username: String!,
       email: String!,
-      password: String!,
+      # user will save books to their account, referred to User.js
+      bookCount: Int,
       savedBooks: [Book]
 
   }
@@ -35,7 +36,6 @@ const typeDefs = gql`
 
   type Query {
       me: User
-      books(_id: ID!) : [Book]
 
   }
 
