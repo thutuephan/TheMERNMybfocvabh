@@ -48,7 +48,10 @@ const resolvers = {
                 const updatedUser= await User.findOneandUpdate(
                     { _id: context.user._id},
                     {
-                        $push: { savedBooks: bookData }
+                        // use push method to append the search put to book array
+                        // should I replace this         { $addToSet: { savedBooks: body } }, ???
+
+                      $push: { savedBooks: bookData }
                     },
                     { new: true,
                       runValidation: true 
@@ -67,8 +70,8 @@ const resolvers = {
 }
 
 
-createUser,
-  getSingleUser,
-  saveBook,
-  deleteBook,
-  login,
+// createUser,
+//   getSingleUser,
+//   saveBook,
+//   deleteBook,
+//   login,
