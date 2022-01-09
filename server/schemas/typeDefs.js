@@ -22,8 +22,8 @@ const typeDefs = gql`
   }
 
   type Query {
-      user: User
-      books(_id: be ID!) : [Book]
+      me: User
+      books(_id: ID!) : [Book]
 
   }
 
