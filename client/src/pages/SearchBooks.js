@@ -16,7 +16,8 @@ const SearchBooks = () => {
   // create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
 
-  
+  // we are storing an error object within the keyword error, useMutation will store errorss there only if the happen so if no errors, it defaults to Null as value. WIthin the component, if an error happens we may want to display something else and can check for that error variable. It's a placeholder for storing info
+  const [saveBook, { error }] = useMutation(SAVE_BOOK);
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
@@ -33,7 +34,10 @@ const SearchBooks = () => {
     }
 
     try {
-      const response = await searchGoogleBooks(searchInput);
+      // const response = await searchGoogleBooks(searchInput);
+      const response = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${query}` // from API.js
+      )
 
       if (!response.ok) {
         throw new Error('something went wrong!');
@@ -68,13 +72,18 @@ const SearchBooks = () => {
       return false;
     }
 
+    // try {
+    //   const response = await saveBook(bookToSave, token);
+
+    //   if (!response.ok) {
+    //     throw new Error('something went wrong!');
+    //   }
     try {
-      const response = await saveBook(bookToSave, token);
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
+      const { data } = await saveBook({ // we are just adding variables that will be available within the Book data. Based on the learning assistant, the Develop version was relying on a saveBook function within utils/API.js. we are adding redux and using a saveBook method within Redux instead and it takes different arguments so it is not the same function 
+        variables: { bookData: { ...bookToSave } },
+      });
+      console.log(savedBookIds)
+      
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
