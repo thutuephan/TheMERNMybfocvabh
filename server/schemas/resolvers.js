@@ -41,20 +41,21 @@ const resolvers = {
         },
 
         // save book, add a third argument to the resolver to access data in our context (in this case is bookData)
-        saveBook: async (parent, { bookData}, context) => {
+        saveBook: async (parent, { bookData }, context) => {
 
             // if context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-            if(context.user) {
-                const updatedUser= await User.findOneandUpdate(
-                    { _id: context.user._id},
+            if (context.user) {
+                const updatedUser = await User.findOneandUpdate(
+                    { _id: context.user._id },
                     {
                         // use push method to append the search put to book array
                         // should I replace this         { $addToSet: { savedBooks: body } }, ???
 
-                      $push: { savedBooks: bookData }
+                        $push: { savedBooks: bookData }
                     },
-                    { new: true,
-                      runValidation: true 
+                    {
+                        new: true,
+                        runValidation: true
                     },
 
                 );
@@ -64,9 +65,24 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in');
         },
 
+        // remove book by id, accepts a book's bookId as a parameter; returns a User type.
+        removeBook: async (parent, { bookId }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                
+                    { _id: context.user._id },
+                    // use $pull method to remove from an existing array all instances of a value that matches a specified condition, in this case it is bookId
+                    { $pull: { bookId: bookId } },
+                    { new: true }
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in!');
 
-    }
-}
+        },
+
+    },
+};
 
 module.exports = resolvers;
 
