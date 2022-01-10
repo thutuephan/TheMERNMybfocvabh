@@ -10,13 +10,12 @@ import { removeBookId } from '../utils/localStorage';
 const SavedBooks = () => {
 
   const { loading, data } = useQuery(GET_ME);
-  
+
   // check if data is returning from the `GET_ME` query
   const userData = data?.me || {};
+  // we are storing an error object within the keyword error, useMutation will store errorss there only if the happen so if no errors, it defaults to Null as value. WIthin the component, if an error happens we may want to display something else and can check for that error variable. It's a placeholder for storing info
 
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
-
-  
 
   // use this to determine if `useEffect()` hook needs to run again
   // const userDataLength = Object.keys(userData).length;
@@ -56,26 +55,34 @@ const SavedBooks = () => {
 
     try {
       // const response = await deleteBook(bookId, token); this is the original code
-      
+      // if (!response.ok) {
+      //       throw new Error('something went wrong!');
+      //     }
 
+      //     const updatedUser = await response.json();
+      //     setUserData(updatedUser);
+      //     removeBookId(bookId);
+      //   } catch (err) {
+      //     console.error(err);
+      //   }
+      // };
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+      const { data } = await removeBook({
+        variables: { bookId },
+      });
 
-      const updatedUser = await response.json();
-      setUserData(updatedUser);
       // upon success, remove book's id from localStorage
-      removeBookId(bookId);
+      removeBookId(bookId)
     } catch (err) {
       console.error(err);
     }
   };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if (loading) {
     return <h2>LOADING...</h2>;
   }
+
 
   return (
     <>
@@ -110,6 +117,7 @@ const SavedBooks = () => {
       </Container>
     </>
   );
+
 };
 
 export default SavedBooks;
