@@ -42,7 +42,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    saveBook(bookData: BookInput!): User
+    saveBook(bookData: BookInput!): User #bookData from SearchBook.js, this is the comment starting with the hash sign
     removeBook(bookId: String!): User
   }
 `;
