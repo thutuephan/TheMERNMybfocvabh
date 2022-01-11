@@ -14,7 +14,7 @@ const server = new ApolloServer({
   resolvers,
   // add context to our server so data from authMiddleWare function can pass to our resolver functions
   // context: authMiddleware, => I have to comment this out because it gave the app an error in server while trying to run the playground, Jeremy-a BCS learning assistant explained that when I passed authMiddleware which is supposed to get a security token in order for the requests to work; GarphQl is not part of the app and is not ssigned in, so GQL playground is being denied because of the authMiddleware. That's why I got the error "server cannot be reached" and could not open schema in the playground
-  // context: authMiddleware,
+   context: authMiddleware,
 })
 
 server.applyMiddleware({ app });

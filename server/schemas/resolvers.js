@@ -45,7 +45,7 @@ const resolvers = {
 
             // if context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
             if (context.user) {
-                const updatedUser = await User.findOneandUpdate(
+                const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     {
                         // use push method to append the search put to book array
