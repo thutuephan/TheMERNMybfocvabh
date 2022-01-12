@@ -29,7 +29,7 @@
     
   ## Links
   * The URL of the GitHub repository: https://github.com/thutuephan/TheMERNMybfocvabh
-  * The heroku URL of the functional, deployed application: 
+  * The heroku URL of the functional, deployed application: https://google-book-search-engine-al.herokuapp.com/
 
   ## Screenshots
   ### Book 1
