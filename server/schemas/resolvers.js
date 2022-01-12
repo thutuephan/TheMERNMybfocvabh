@@ -67,12 +67,13 @@ const resolvers = {
 
         // remove book by id, accepts a book's bookId as a parameter; returns a User type.
         removeBook: async (parent, { bookId }, context) => {
+            console.log(bookId);
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                 
                     { _id: context.user._id },
                     // use $pull method to remove from an existing array all instances of a value that matches a specified condition, in this case it is bookId
-                    { $pull: { bookId: bookId } },
+                    { $pull: { savedBooks: {bookId} } },
                     { new: true }
                 );
                 return updatedUser;

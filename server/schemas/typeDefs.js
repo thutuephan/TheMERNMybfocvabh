@@ -43,7 +43,9 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     saveBook(bookData: BookInput!): User #bookData from SearchBook.js, this is the comment starting with the hash sign
-    removeBook(bookId: String!): User
+    #removeBook(bookId: String!): User
+    removeBook(bookId: ID!): User
+
   }
 `;
 
