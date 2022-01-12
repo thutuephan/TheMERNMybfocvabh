@@ -32,11 +32,11 @@
   * The heroku URL of the functional, deployed application: https://alice-budget-tracker.herokuapp.com/ 
 
   ## Screenshots
-  ![book1](https://github.com/thutuephan/DBSP-PWA-Budget-tracker/blob/main/public/images/budget1.png)
-  ![book2](https://github.com/thutuephan/DBSP-PWA-Budget-tracker/blob/main/public/images/budget2.png)
-  ![book3](https://github.com/thutuephan/DBSP-PWA-Budget-tracker/blob/main/public/images/budget2.png)
-  ![book4](https://github.com/thutuephan/DBSP-PWA-Budget-tracker/blob/main/public/images/budget2.png)
-  ![book5](https://github.com/thutuephan/DBSP-PWA-Budget-tracker/blob/main/public/images/budget2.png)
+  ![book1](https://github.com/thutuephan/TheMERNMybfocvabh/blob/main/Assets/book1.png)
+  ![book2](https://github.com/thutuephan/TheMERNMybfocvabh/blob/main/Assets/book2.png)
+  ![book3](https://github.com/thutuephan/TheMERNMybfocvabh/blob/main/Assets/book3.png)
+  ![book4](https://github.com/thutuephan/TheMERNMybfocvabh/blob/main/Assets/book4.png)
+  ![book5](https://github.com/thutuephan/TheMERNMybfocvabh/blob/main/Assets/book5.png)
 
   
 
